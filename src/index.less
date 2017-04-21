@@ -1,0 +1,40 @@
+.dragHandle {
+  cursor: move!important;
+  display: inline;
+}
+
+.draggingList,
+.draggingList tbody {
+  overflow: hidden;
+  position: relative;
+}
+
+.draggingList tbody {
+  position: relative;
+  overflow: hidden;
+}
+
+.draggingList tbody tr {
+  background: #fff!important;
+  transition: none!important;
+}
+
+.draggingList tbody tr td {
+  position: relative;
+}
+
+.draggingList .dragLine {
+  bottom: -1px;
+  height: 0;
+  width: 3000px;
+  left: -1500px;
+  display: block;
+  position: absolute;
+  border-bottom: dashed 2px red;
+  z-index: 2;
+}
+
+.draggingList .dragLine.LineTop {
+  bottom: auto;
+  top: -1px;
+}
