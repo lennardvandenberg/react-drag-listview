@@ -1,14 +1,12 @@
 import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 
-import styles from './DraggingTable.less';
-import {closest, getDomIndex, getScrollElement} from '../../../utils/domUtils.js';
+import styles from './index.less';
+import {closest, getDomIndex, getScrollElement} from './util.jsx';
 
 const Directions = {
-  top: 1,
-  right: 2,
-  bottom: 3,
-  left: 4
+  TOP: 1,
+  BOTTOM: 3
 };
 
 class DraggingTable extends React.Component {
@@ -29,7 +27,7 @@ class DraggingTable extends React.Component {
     this.enableScroll = true;
     this.scrollElement = null;
     this.autoScrollTimerId = -1;
-    this.direction = Directions.bottom;
+    this.direction = Directions.BOTTOM;
   }
 
   onMouseDown(e) {
@@ -86,12 +84,12 @@ class DraggingTable extends React.Component {
 
   autoScroll() {
     const scrollTop = this.scrollElement.scrollTop;
-    if (this.direction === Directions.bottom) {
+    if (this.direction === Directions.BOTTOM) {
       this.scrollElement.scrollTop = scrollTop + 6;
       if (scrollTop === this.scrollElement.scrollTop) {
         this.stopAtuoScroll();
       }
-    } else if (this.direction === Directions.top) {
+    } else if (this.direction === Directions.TOP) {
       this.scrollElement.scrollTop = scrollTop - 6;
       if (this.scrollElement.scrollTop <= 0) {
         this.stopAtuoScroll();
@@ -111,9 +109,9 @@ class DraggingTable extends React.Component {
     const compatibleHeight = targetHeight * (2 / 3);
     this.direction = 0;
     if (pageY > (top + height - compatibleHeight)) {
-      this.direction = Directions.bottom;
+      this.direction = Directions.BOTTOM;
     } else if (pageY < top + compatibleHeight) {
-      this.direction = Directions.top;
+      this.direction = Directions.TOP;
     }
     if (this.direction) {
       if (this.autoScrollTimerId < 0) {

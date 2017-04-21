@@ -14,7 +14,13 @@
     "url": "git+https://github.com/raisezhang/react-drag-listview.git"
   },
   "keywords": [
-    "react"
+    "react",
+    "react-component",
+    "sortable",
+    "antd",
+    "rc-table",
+    "react-drag-list",
+    "sortable"
   ],
   "author": "raisezhang@hotmail.com",
   "license": "MIT",
