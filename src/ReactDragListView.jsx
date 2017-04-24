@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { closest, getDomIndex, getScrollElement } from './util.js';
 
-require('./index.less');
-
 const DEFAULT_NODE_SELECTOR = 'tr';
 const DIRECTIONS = {
   TOP: 1,
@@ -191,7 +189,16 @@ class ReactDragListView extends React.Component {
           {this.props.children}
           {this.state.fromIndex >= 0
               && this.state.fromIndex !== this.state.toIndex
-              && <span ref="draggingLine" className="draggingLine"></span>
+              &&
+              <span ref="draggingLine" style={{
+                position: 'fixed',
+                zIndex: 9999,
+                height: 0,
+                borderBottom: 'dashed 2px red',
+                display: 'block',
+                marginTop: '-1px'
+              }} className={this.props.lineClassName}
+              />
           }
       </div>
     );
