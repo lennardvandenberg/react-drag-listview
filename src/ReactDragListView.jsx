@@ -8,6 +8,8 @@ const DIRECTIONS = {
   BOTTOM: 3
 };
 const UNIT_PX = 'px';
+const DRAG_LIND_STYLE = 'position:fixed;z-index:9999;height:0;' +
+                        'margin-top:-1px;border-bottom:dashed 2px red;display:none;';
 
 class ReactDragListView extends React.Component {
 
@@ -106,6 +108,7 @@ class ReactDragListView extends React.Component {
         this.props.onDragEnd(this.state.fromIndex, this.state.toIndex);
       }
     }
+    this.destoryDragLine();
     this.setState({ fromIndex: -1, toIndex: -1 });
   }
 
@@ -123,6 +126,16 @@ class ReactDragListView extends React.Component {
     return closest(target,
         this.props.handleSelector || this.props.nodeSelector,
         this.refs.dragList);
+  }
+
+  getDragLine() {
+    if (!this.dragLine) {
+      this.dragLine = document.createElement('div');
+      this.dragLine.style = DRAG_LIND_STYLE;
+      document.body.appendChild(this.dragLine);
+    }
+    this.dragLine.className = this.props.lineClassName;
+    return this.dragLine;
   }
 
   resolveAutoScroll(e, target) {
@@ -170,36 +183,35 @@ class ReactDragListView extends React.Component {
     }
   }
 
+  destoryDragLine() {
+    if (this.dragLine) {
+      this.dragLine.style.display = 'none';
+    }
+  }
+
   fixDragLine(target) {
-    const draggingLine = this.refs.draggingLine;
-    if (!target || !draggingLine) {
+    const dragLine = this.getDragLine();
+    if (!target || this.state.fromIndex < 0
+        || this.state.fromIndex === this.state.toIndex) {
+      dragLine.style.display = 'none';
       return;
     }
     const { left, top, width, height } = target.getBoundingClientRect();
-    draggingLine.style.left = left + UNIT_PX;
-    draggingLine.style.width = width + UNIT_PX;
-    draggingLine.style.top = (this.state.toIndex < this.state.fromIndex
+    dragLine.style.left = left + UNIT_PX;
+    dragLine.style.width = width + UNIT_PX;
+    dragLine.style.top = (this.state.toIndex < this.state.fromIndex
       ? top
       : (top + height)) + UNIT_PX;
+    dragLine.style.display = 'block';
   }
 
   render() {
     return (
-      <div onMouseDown={this.onMouseDown} ref="dragList">
+      <div style={{
+        position: 'relative'
+      }} onMouseDown={this.onMouseDown} ref="dragList"
+      >
           {this.props.children}
-          {this.state.fromIndex >= 0
-              && this.state.fromIndex !== this.state.toIndex
-              &&
-              <span ref="draggingLine" style={{
-                position: 'fixed',
-                zIndex: 9999,
-                height: 0,
-                borderBottom: 'dashed 2px red',
-                display: 'block',
-                marginTop: '-1px'
-              }} className={this.props.lineClassName}
-              />
-          }
       </div>
     );
   }
