@@ -76,7 +76,7 @@ webpackJsonp([0,1],[
 	      ),
 	      React.createElement(
 	        'div',
-	        { className: 'container' },
+	        { className: 'simple-inner' },
 	        React.createElement(
 	          ReactDragListView,
 	          dragProps,
@@ -23501,4 +23501,4 @@ webpackJsonp([0,1],[
 
 /***/ })
 ]);
-//# sourceMappingURL=dragging.js.map
+//# sourceMappingURL=simple.js.map
