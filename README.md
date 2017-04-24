@@ -19,14 +19,14 @@ React drag list component.
 
 ## Development
 
-```
+```bash
 npm install
 npm start
 ```
 
 ## Usage
 
-```jsx
+```javascript
 const ReactDragListView = require('react-drag-listview');
 
 class Demo extends React.Component {
