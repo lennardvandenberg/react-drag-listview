@@ -22853,6 +22853,7 @@ webpackJsonp([0,1],[
 	  BOTTOM: 3
 	};
 	var UNIT_PX = 'px';
+	var DRAG_LIND_STYLE = 'position:fixed;z-index:9999;height:0;' + 'margin-top:-1px;border-bottom:dashed 2px red;display:none;';
 	
 	var ReactDragListView = function (_React$Component) {
 	  (0, _inherits3.default)(ReactDragListView, _React$Component);
@@ -22937,6 +22938,7 @@ webpackJsonp([0,1],[
 	        this.props.onDragEnd(this.state.fromIndex, this.state.toIndex);
 	      }
 	    }
+	    this.destoryDragLine();
 	    this.setState({ fromIndex: -1, toIndex: -1 });
 	  };
 	
@@ -22950,6 +22952,16 @@ webpackJsonp([0,1],[
 	
 	  ReactDragListView.prototype.getHandleNode = function getHandleNode(target) {
 	    return (0, _util.closest)(target, this.props.handleSelector || this.props.nodeSelector, this.refs.dragList);
+	  };
+	
+	  ReactDragListView.prototype.getDragLine = function getDragLine() {
+	    if (!this.dragLine) {
+	      this.dragLine = document.createElement('div');
+	      this.dragLine.style = DRAG_LIND_STYLE;
+	      document.body.appendChild(this.dragLine);
+	    }
+	    this.dragLine.className = this.props.lineClassName;
+	    return this.dragLine;
 	  };
 	
 	  ReactDragListView.prototype.resolveAutoScroll = function resolveAutoScroll(e, target) {
@@ -23002,9 +23014,16 @@ webpackJsonp([0,1],[
 	    }
 	  };
 	
+	  ReactDragListView.prototype.destoryDragLine = function destoryDragLine() {
+	    if (this.dragLine) {
+	      this.dragLine.style.display = 'none';
+	    }
+	  };
+	
 	  ReactDragListView.prototype.fixDragLine = function fixDragLine(target) {
-	    var draggingLine = this.refs.draggingLine;
-	    if (!target || !draggingLine) {
+	    var dragLine = this.getDragLine();
+	    if (!target || this.state.fromIndex < 0 || this.state.fromIndex === this.state.toIndex) {
+	      dragLine.style.display = 'none';
 	      return;
 	    }
 	
@@ -23014,25 +23033,20 @@ webpackJsonp([0,1],[
 	        width = _target$getBoundingCl.width,
 	        height = _target$getBoundingCl.height;
 	
-	    draggingLine.style.left = left + UNIT_PX;
-	    draggingLine.style.width = width + UNIT_PX;
-	    draggingLine.style.top = (this.state.toIndex < this.state.fromIndex ? top : top + height) + UNIT_PX;
+	    dragLine.style.left = left + UNIT_PX;
+	    dragLine.style.width = width + UNIT_PX;
+	    dragLine.style.top = (this.state.toIndex < this.state.fromIndex ? top : top + height) + UNIT_PX;
+	    dragLine.style.display = 'block';
 	  };
 	
 	  ReactDragListView.prototype.render = function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { onMouseDown: this.onMouseDown, ref: 'dragList' },
-	      this.props.children,
-	      this.state.fromIndex >= 0 && this.state.fromIndex !== this.state.toIndex && _react2.default.createElement('span', { ref: 'draggingLine', style: {
-	          position: 'fixed',
-	          zIndex: 9999,
-	          height: 0,
-	          borderBottom: 'dashed 2px red',
-	          display: 'block',
-	          marginTop: '-1px'
-	        }, className: this.props.lineClassName
-	      })
+	      { style: {
+	          position: 'relative'
+	        }, onMouseDown: this.onMouseDown, ref: 'dragList'
+	      },
+	      this.props.children
 	    );
 	  };
 	
