@@ -35,7 +35,7 @@ class Demo extends React.Component {
     return (
       <div className="simple simple1">
         <h2>Dragging handle</h2>
-        <div className="container">
+        <div className="simple-inner">
           <ReactDragListView {...dragProps}>
             <ol>
               {this.state.data.map((item, index) => (
