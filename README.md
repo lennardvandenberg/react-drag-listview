@@ -19,7 +19,8 @@ React drag list component.
 
 ## Example
 
-https://codepen.io/raisezhang/pen/MmjypX
+* [Simple Dragging Demo](https://raisezhang.github.io/react-drag-listview/examples/simple.html)
+* [Dragging Ant-Design Table](https://codepen.io/raisezhang/pen/MmjypX)
 
 ## Development
 
