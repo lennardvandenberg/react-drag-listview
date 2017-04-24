@@ -23501,4 +23501,4 @@ webpackJsonp([0,1],[
 
 /***/ })
 ]);
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=dragging.js.map
