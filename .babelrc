@@ -1,6 +1,6 @@
 {
   "presets": [
-    "es2015",
+    "es2015-ie",
     "react",
     "stage-0"
   ],
@@ -10,7 +10,7 @@
   ],
   "env": {
     "test": {
-      "plugins": [ "istanbul" ]
+      "plugins": ["istanbul"]
     }
   }
 }

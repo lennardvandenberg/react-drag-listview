@@ -1,18 +1,8 @@
 {
   "name": "react-drag-listview",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "author": "raisezhang@hotmail.com",
   "description": "drag list view component for react",
-  "main": "index.js",
-  "directories": {
-    "example": "examples"
-  },
-  "scripts": {
-    "test": "node test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/raisezhang/react-drag-listview.git"
-  },
   "keywords": [
     "react",
     "react-component",
@@ -22,21 +12,68 @@
     "react-drag-list",
     "sortable"
   ],
-  "author": "raisezhang@hotmail.com",
   "license": "MIT",
+  "homepage": "https://github.com/raisezhang/react-drag-listview#readme",
+  "main": "./lib/index",
+  "files": [
+    "assets/*.css",
+    "dist",
+    "lib"
+  ],
+  "entry": {
+    "rc-table": [
+      "./assets/index.less",
+      "./src/index.js"
+    ]
+  },
+  "maintainers": [
+    "raisezhang@hotmail.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raisezhang/react-drag-listview.git"
+  },
   "bugs": {
     "url": "https://github.com/raisezhang/react-drag-listview/issues"
   },
+  "config": {
+    "port": 8000
+  },
+  "scripts": {
+    "build": "rc-tools run build",
+    "compile": "rc-tools run compile",
+    "gh-pages": "rc-tools run gh-pages",
+    "start": "rc-tools run server",
+    "pub": "rc-tools run pub",
+    "lint": "rc-tools run lint",
+    "lint:fix": "rc-tools run lint --fix",
+    "karma": "rc-tools run karma",
+    "saucelabs": "rc-tools run saucelabs",
+    "test": "jest",
+    "chrome-test": "rc-tools run chrome-test",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*"
+    ]
+  },
   "dependencies": {
-    "babel-runtime": "6.x",
-    "classnames": "^2.2.5"
+    "prop-types": "^15.5.8"
   },
   "devDependencies": {
-    "expect.js": "0.3.x",
+    "coveralls": "^2.11.15",
+    "enzyme": "^2.7.0",
+    "enzyme-to-json": "^1.4.5",
+    "rc-tools": "^5.9.2",
+    "expect.js": "~0.3.1",
+    "jest": "^18.1.0",
     "pre-commit": "1.x",
-    "react": "15.x",
-    "react-addons-test-utils": "15.x",
-    "react-dom": "15.x"
+    "react": "^15.2.1",
+    "prop-types": "^15.5.8",
+    "react-dom": "^15.2.1"
   },
-  "homepage": "https://github.com/raisezhang/react-drag-listview#readme"
+  "pre-commit": [
+    "lint"
+  ]
 }
