@@ -18,7 +18,7 @@ class ReactDragListView extends React.Component {
     handleSelector: PropTypes.string,
     nodeSelector: PropTypes.string,
     enableScroll: PropTypes.bool,
-    autoScrollSpeed: PropTypes.number,
+    scrollSpeed: PropTypes.number,
     lineClassName: PropTypes.string,
     children: PropTypes.node
   }
@@ -26,7 +26,7 @@ class ReactDragListView extends React.Component {
   static defaultProps = {
     nodeSelector: DEFAULT_NODE_SELECTOR,
     enableScroll: true,
-    autoScrollSpeed: 10
+    scrollSpeed: 10
   }
 
   constructor(props) {
@@ -182,12 +182,12 @@ class ReactDragListView extends React.Component {
   autoScroll() {
     const scrollTop = this.scrollElement.scrollTop;
     if (this.direction === DIRECTIONS.BOTTOM) {
-      this.scrollElement.scrollTop = scrollTop + this.props.autoScrollSpeed;
+      this.scrollElement.scrollTop = scrollTop + this.props.scrollSpeed;
       if (scrollTop === this.scrollElement.scrollTop) {
         this.stopAtuoScroll();
       }
     } else if (this.direction === DIRECTIONS.TOP) {
-      this.scrollElement.scrollTop = scrollTop - this.props.autoScrollSpeed;
+      this.scrollElement.scrollTop = scrollTop - this.props.scrollSpeed;
       if (this.scrollElement.scrollTop <= 0) {
         this.stopAtuoScroll();
       }

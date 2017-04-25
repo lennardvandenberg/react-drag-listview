@@ -80,6 +80,59 @@ class Demo extends React.Component {
 
 ```
 
+## API
+
+### Properties
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th style="width: 100px;">Name</th>
+      <th style="width: 50px;">Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onDragEnd</td>
+      <td>Function(fromIndex, toIndex)</td>
+      <td></td>
+      <td>on drag end callback, required</td>
+    </tr>
+    <tr>
+      <td>nodeSelector</td>
+      <td>String</td>
+      <td>tr</td>
+      <td>get drag item cssQuery</td>
+    </tr>
+    <tr>
+      <td>handleSelector</td>
+      <td>String</td>
+      <td>```nodeSelector```</td>
+      <td>get drag handle cssQuery</td>
+    </tr>
+    <tr>
+      <td>enableScroll</td>
+      <td>Boolean</td>
+      <td>true</td>
+      <td>whether use auto scroll for dragging</td>
+    </tr>
+    <tr>
+      <td>scrollSpeed</td>
+      <td>Number</td>
+      <td>10</td>
+      <td>scroll speed</td>
+    </tr>
+    <tr>
+      <td>lineClassName</td>
+      <td>String</td>
+      <td></td>
+      <td>get dragLine's className, css properties must be use ```!important```</td>
+    </tr>
+  </tbody>
+</table>
+
 ## License
 
 react-drag-listview is released under the MIT license.
