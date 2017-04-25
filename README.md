@@ -109,7 +109,7 @@ class Demo extends React.Component {
     <tr>
       <td>handleSelector</td>
       <td>String</td>
-      <td>nodeSelector</td>
+      <td><b>nodeSelector</b></td>
       <td>get drag handle cssQuery</td>
     </tr>
     <tr>
@@ -128,7 +128,7 @@ class Demo extends React.Component {
       <td>lineClassName</td>
       <td>String</td>
       <td></td>
-      <td>get dragLine's className, css properties must be use !important</td>
+      <td>get dragLine's className, css properties must be use <b>!important</b></td>
     </tr>
   </tbody>
 </table>
