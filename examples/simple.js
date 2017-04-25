@@ -23010,12 +23010,12 @@ webpackJsonp([0,1],[
 	  ReactDragListView.prototype.autoScroll = function autoScroll() {
 	    var scrollTop = this.scrollElement.scrollTop;
 	    if (this.direction === DIRECTIONS.BOTTOM) {
-	      this.scrollElement.scrollTop = scrollTop + this.props.autoScrollSpeed;
+	      this.scrollElement.scrollTop = scrollTop + this.props.scrollSpeed;
 	      if (scrollTop === this.scrollElement.scrollTop) {
 	        this.stopAtuoScroll();
 	      }
 	    } else if (this.direction === DIRECTIONS.TOP) {
-	      this.scrollElement.scrollTop = scrollTop - this.props.autoScrollSpeed;
+	      this.scrollElement.scrollTop = scrollTop - this.props.scrollSpeed;
 	      if (this.scrollElement.scrollTop <= 0) {
 	        this.stopAtuoScroll();
 	      }
@@ -23076,14 +23076,14 @@ webpackJsonp([0,1],[
 	  handleSelector: _propTypes2.default.string,
 	  nodeSelector: _propTypes2.default.string,
 	  enableScroll: _propTypes2.default.bool,
-	  autoScrollSpeed: _propTypes2.default.number,
+	  scrollSpeed: _propTypes2.default.number,
 	  lineClassName: _propTypes2.default.string,
 	  children: _propTypes2.default.node
 	};
 	ReactDragListView.defaultProps = {
 	  nodeSelector: DEFAULT_NODE_SELECTOR,
 	  enableScroll: true,
-	  autoScrollSpeed: 10
+	  scrollSpeed: 10
 	};
 	exports.default = ReactDragListView;
 	module.exports = exports['default'];
