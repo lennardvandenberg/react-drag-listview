@@ -3,13 +3,13 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const ReactDragListView = require('react-drag-listview/src/index.js');
 
-require('react-drag-listview/assets/index.less');
+require('./index.less');
 
 class Demo extends React.Component {
   constructor(props) {
     super(props);
     const data = [];
-    for (let i = 1, len = 7; i < len; i++) {
+    for (let i = 1, len = 21; i < len; i++) {
       data.push({
         title: `rows${i}`
       });
@@ -38,12 +38,12 @@ class Demo extends React.Component {
         <div className="simple-inner">
           <ReactDragListView {...dragProps}>
             <ol>
-              {this.state.data.map((item, index) => (
-                <li key={index}>
-                  {item.title}
-                  <a href="#">Drag</a>
-                </li>
-              ))}
+            {this.state.data.map((item, index) => (
+              <li key={index}>
+                {item.title}
+                <a href="#">Drag</a>
+              </li>
+            ))}
             </ol>
           </ReactDragListView>
         </div>

@@ -1,6 +1,6 @@
 {
   "name": "react-drag-listview",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "raisezhang@hotmail.com",
   "description": "drag list view component for react",
   "keywords": [
@@ -21,7 +21,7 @@
     "lib"
   ],
   "entry": {
-    "reactDragListview": [
+    "react-drag-listview": [
       "./src/index.js"
     ]
   },
