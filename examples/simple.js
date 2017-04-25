@@ -41,7 +41,7 @@ webpackJsonp([0,1],[
 	    var _this = (0, _possibleConstructorReturn3.default)(this, _React$Component.call(this, props));
 	
 	    var data = [];
-	    for (var i = 1, len = 7; i < len; i++) {
+	    for (var i = 1, len = 21; i < len; i++) {
 	      data.push({
 	        title: 'rows' + i
 	      });
@@ -22880,6 +22880,14 @@ webpackJsonp([0,1],[
 	    return _this;
 	  }
 	
+	  ReactDragListView.prototype.componentWillUnmount = function componentWillUnmount() {
+	    if (this.dragLine && this.dragLine.parentNode) {
+	      this.dragLine.parentNode.removeChild(this.dragLine);
+	      this.dragLine = null;
+	      this.cacheDragTarget = null;
+	    }
+	  };
+	
 	  ReactDragListView.prototype.onMouseDown = function onMouseDown(e) {
 	    var handle = this.getHandleNode(e.target);
 	    if (handle) {
@@ -22924,6 +22932,7 @@ webpackJsonp([0,1],[
 	      toIndex = -1;
 	      this.stopAtuoScroll();
 	    }
+	    this.cacheDragTarget = target;
 	    this.fixDragLine(target);
 	    this.setState({ toIndex: toIndex });
 	  };
@@ -22938,7 +22947,7 @@ webpackJsonp([0,1],[
 	        this.props.onDragEnd(this.state.fromIndex, this.state.toIndex);
 	      }
 	    }
-	    this.destoryDragLine();
+	    this.hideDragLine();
 	    this.setState({ fromIndex: -1, toIndex: -1 });
 	  };
 	
@@ -22957,10 +22966,10 @@ webpackJsonp([0,1],[
 	  ReactDragListView.prototype.getDragLine = function getDragLine() {
 	    if (!this.dragLine) {
 	      this.dragLine = document.createElement('div');
-	      this.dragLine.style = DRAG_LIND_STYLE;
+	      this.dragLine.setAttribute('style', DRAG_LIND_STYLE);
 	      document.body.appendChild(this.dragLine);
 	    }
-	    this.dragLine.className = this.props.lineClassName;
+	    this.dragLine.className = this.props.lineClassName || '';
 	    return this.dragLine;
 	  };
 	
@@ -22976,7 +22985,7 @@ webpackJsonp([0,1],[
 	    var targetHeight = target.offsetHeight;
 	    var pageY = e.pageY;
 	
-	    var compatibleHeight = targetHeight * 0.5;
+	    var compatibleHeight = targetHeight * 2 / 3;
 	    this.direction = 0;
 	    if (pageY > top + height - compatibleHeight) {
 	      this.direction = DIRECTIONS.BOTTOM;
@@ -22995,17 +23004,18 @@ webpackJsonp([0,1],[
 	  ReactDragListView.prototype.stopAtuoScroll = function stopAtuoScroll() {
 	    clearInterval(this.scrollTimerId);
 	    this.scrollTimerId = -1;
+	    this.fixDragLine(this.cacheDragTarget);
 	  };
 	
 	  ReactDragListView.prototype.autoScroll = function autoScroll() {
 	    var scrollTop = this.scrollElement.scrollTop;
 	    if (this.direction === DIRECTIONS.BOTTOM) {
-	      this.scrollElement.scrollTop = scrollTop + 6;
+	      this.scrollElement.scrollTop = scrollTop + this.props.autoScrollSpeed;
 	      if (scrollTop === this.scrollElement.scrollTop) {
 	        this.stopAtuoScroll();
 	      }
 	    } else if (this.direction === DIRECTIONS.TOP) {
-	      this.scrollElement.scrollTop = scrollTop - 6;
+	      this.scrollElement.scrollTop = scrollTop - this.props.autoScrollSpeed;
 	      if (this.scrollElement.scrollTop <= 0) {
 	        this.stopAtuoScroll();
 	      }
@@ -23014,7 +23024,7 @@ webpackJsonp([0,1],[
 	    }
 	  };
 	
-	  ReactDragListView.prototype.destoryDragLine = function destoryDragLine() {
+	  ReactDragListView.prototype.hideDragLine = function hideDragLine() {
 	    if (this.dragLine) {
 	      this.dragLine.style.display = 'none';
 	    }
@@ -23023,7 +23033,7 @@ webpackJsonp([0,1],[
 	  ReactDragListView.prototype.fixDragLine = function fixDragLine(target) {
 	    var dragLine = this.getDragLine();
 	    if (!target || this.state.fromIndex < 0 || this.state.fromIndex === this.state.toIndex) {
-	      dragLine.style.display = 'none';
+	      this.hideDragLine();
 	      return;
 	    }
 	
@@ -23033,19 +23043,27 @@ webpackJsonp([0,1],[
 	        width = _target$getBoundingCl.width,
 	        height = _target$getBoundingCl.height;
 	
+	    var lineTop = this.state.toIndex < this.state.fromIndex ? top : top + height;
+	    if (this.props.enableScroll && this.scrollElement) {
+	      var _scrollElement$getBou2 = this.scrollElement.getBoundingClientRect(),
+	          scrollHeight = _scrollElement$getBou2.height,
+	          scrollTop = _scrollElement$getBou2.top;
+	
+	      if (lineTop < scrollTop - 2 || lineTop > scrollTop + scrollHeight + 2) {
+	        this.hideDragLine();
+	        return;
+	      }
+	    }
 	    dragLine.style.left = left + UNIT_PX;
 	    dragLine.style.width = width + UNIT_PX;
-	    dragLine.style.top = (this.state.toIndex < this.state.fromIndex ? top : top + height) + UNIT_PX;
+	    dragLine.style.top = lineTop + UNIT_PX;
 	    dragLine.style.display = 'block';
 	  };
 	
 	  ReactDragListView.prototype.render = function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { style: {
-	          position: 'relative'
-	        }, onMouseDown: this.onMouseDown, ref: 'dragList'
-	      },
+	      { onMouseDown: this.onMouseDown, ref: 'dragList' },
 	      this.props.children
 	    );
 	  };
@@ -23058,12 +23076,14 @@ webpackJsonp([0,1],[
 	  handleSelector: _propTypes2.default.string,
 	  nodeSelector: _propTypes2.default.string,
 	  enableScroll: _propTypes2.default.bool,
+	  autoScrollSpeed: _propTypes2.default.number,
 	  lineClassName: _propTypes2.default.string,
 	  children: _propTypes2.default.node
 	};
 	ReactDragListView.defaultProps = {
 	  nodeSelector: DEFAULT_NODE_SELECTOR,
-	  enableScroll: true
+	  enableScroll: true,
+	  autoScrollSpeed: 10
 	};
 	exports.default = ReactDragListView;
 	module.exports = exports['default'];
