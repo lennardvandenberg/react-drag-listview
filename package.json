@@ -9,6 +9,8 @@
     "sortable",
     "antd",
     "rc-table",
+    "react-drag",
+    "react-drag-table",
     "react-drag-list",
     "sortable"
   ],
