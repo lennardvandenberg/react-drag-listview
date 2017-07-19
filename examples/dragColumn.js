@@ -76,7 +76,7 @@ webpackJsonp([0],{
 	      React.createElement(
 	        'h2',
 	        null,
-	        'Dragging column'
+	        'Dragging columns'
 	      ),
 	      React.createElement(
 	        'div',
