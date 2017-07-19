@@ -103,8 +103,8 @@ class ReactDragListView extends React.Component {
       this.stopAtuoScroll();
     }
     this.cacheDragTarget = target;
-    this.fixDragLine(target);
     this.setState({ toIndex });
+    this.fixDragLine(target);
   }
 
   onDragEnd(e) {

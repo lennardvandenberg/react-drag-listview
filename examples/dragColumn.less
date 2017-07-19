@@ -1,0 +1,36 @@
+.simple2 .simple-inner {
+  height: auto;
+}
+
+.simple2 ol li {
+  border-right: solid 1px #ddd;
+  border-bottom: 0 none;
+  padding: 30px 0;
+  position: relative;
+  transition: all ease 0.3s;
+  float: left;
+  height: 368px;
+  box-sizing: border-box;
+  width: 70px;
+  text-align: center;
+}
+
+.simple2 ol::after {
+  content: '.';
+  display: block;
+  visibility: hidden;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  clear: both;
+}
+
+.simple2 ol li:nth-last-child(1) {
+  border-right: 0 none;
+}
+
+.simple2 ol li a {
+  position: static;
+  display: block;
+  margin-top: 20px;
+}
