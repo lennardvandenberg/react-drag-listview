@@ -36,7 +36,7 @@ class Demo extends React.Component {
 
     return (
       <div className="simple simple1 simple2">
-        <h2>Dragging column</h2>
+        <h2>Dragging columns</h2>
         <div className="simple-inner">
           <DragColumn {...dragProps}>
             <ol style={{ width: 70 * this.state.data.length }}>
