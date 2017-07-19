@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>simple.js - example - react-drag-listview@0.0.7</title>
+  <title>dragColumn.js - example - react-drag-listview@0.0.7</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -257,7 +257,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
   }
   </script>
-  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="common.css" /><link rel="stylesheet" href="dragColumn.css" />
 </head>
 
 <body>
@@ -273,8 +273,10 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 const React = require('react');
 const ReactDOM = require('react-dom');
 const ReactDragListView = require('react-drag-listview/lib/index.js');
+const DragColumn = ReactDragListView.DragColumn;
 
 require('./index.less');
+require('./dragColumn.less');
 
 class Demo extends React.Component {
   constructor(props) {
@@ -282,7 +284,7 @@ class Demo extends React.Component {
     const data = [];
     for (let i = 1, len = 21; i &lt; len; i++) {
       data.push({
-        title: `rows${i}`
+        title: `col${i}`
       });
     }
     this.state = {
@@ -304,11 +306,11 @@ class Demo extends React.Component {
     };
 
     return (
-      &lt;div className="simple simple1"&gt;
-        &lt;h2&gt;Dragging handle&lt;/h2&gt;
+      &lt;div className="simple simple1 simple2"&gt;
+        &lt;h2&gt;Dragging column&lt;/h2&gt;
         &lt;div className="simple-inner"&gt;
-          &lt;ReactDragListView {...dragProps}&gt;
-            &lt;ol&gt;
+          &lt;DragColumn {...dragProps}&gt;
+            &lt;ol style={{ width: 70 * this.state.data.length }}&gt;
             {this.state.data.map((item, index) =&gt; (
               &lt;li key={index}&gt;
                 {item.title}
@@ -316,7 +318,7 @@ class Demo extends React.Component {
               &lt;/li&gt;
             ))}
             &lt;/ol&gt;
-          &lt;/ReactDragListView&gt;
+          &lt;/DragColumn&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     );
@@ -335,7 +337,7 @@ ReactDOM.render(
   </a>
   <script>FastClick.attach(document.body);</script>
   <script src="common.js?nowrap"></script>
-  <script src="simple.js?nowrap"></script>
+  <script src="dragColumn.js?nowrap"></script>
 </body>
 
 </html>

@@ -1,14 +1,14 @@
-webpackJsonp([1],{
+webpackJsonp([0],{
 
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(278);
+	module.exports = __webpack_require__(1);
 
 
 /***/ }),
 
-/***/ 278:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31,8 +31,10 @@ webpackJsonp([1],{
 	var React = __webpack_require__(80);
 	var ReactDOM = __webpack_require__(115);
 	var ReactDragListView = __webpack_require__(261);
+	var DragColumn = ReactDragListView.DragColumn;
 	
 	__webpack_require__(276);
+	__webpack_require__(277);
 	
 	var Demo = function (_React$Component) {
 	  (0, _inherits3.default)(Demo, _React$Component);
@@ -45,7 +47,7 @@ webpackJsonp([1],{
 	    var data = [];
 	    for (var i = 1, len = 21; i < len; i++) {
 	      data.push({
-	        title: 'rows' + i
+	        title: 'col' + i
 	      });
 	    }
 	    _this.state = {
@@ -70,21 +72,21 @@ webpackJsonp([1],{
 	
 	    return React.createElement(
 	      'div',
-	      { className: 'simple simple1' },
+	      { className: 'simple simple1 simple2' },
 	      React.createElement(
 	        'h2',
 	        null,
-	        'Dragging handle'
+	        'Dragging column'
 	      ),
 	      React.createElement(
 	        'div',
 	        { className: 'simple-inner' },
 	        React.createElement(
-	          ReactDragListView,
+	          DragColumn,
 	          dragProps,
 	          React.createElement(
 	            'ol',
-	            null,
+	            { style: { width: 70 * this.state.data.length } },
 	            this.state.data.map(function (item, index) {
 	              return React.createElement(
 	                'li',
@@ -108,7 +110,10 @@ webpackJsonp([1],{
 	
 	ReactDOM.render(React.createElement(Demo, null), document.getElementById('__react-content'));
 
-/***/ })
+/***/ }),
+
+/***/ 277:
+276
 
 });
-//# sourceMappingURL=simple.js.map
+//# sourceMappingURL=dragColumn.js.map
