@@ -22965,7 +22965,7 @@
 	      }
 	    } else {
 	      toIndex = -1;
-	      this.stopAtuoScroll();
+	      this.stopAutoScroll();
 	    }
 	    this.cacheDragTarget = target;
 	    this.setState({ toIndex: toIndex });
@@ -22974,7 +22974,7 @@
 	
 	  ReactDragListView.prototype.onDragEnd = function onDragEnd(e) {
 	    var target = this.getDragNode(e.target);
-	    this.stopAtuoScroll();
+	    this.stopAutoScroll();
 	    if (target) {
 	      target.removeAttribute('draggable');
 	      target.ondragstart = target.ondragend = target.parentNode.ondragenter = target.parentNode.ondragover = null;
@@ -23032,11 +23032,11 @@
 	        this.scrollTimerId = setInterval(this.autoScroll, 20);
 	      }
 	    } else {
-	      this.stopAtuoScroll();
+	      this.stopAutoScroll();
 	    }
 	  };
 	
-	  ReactDragListView.prototype.stopAtuoScroll = function stopAtuoScroll() {
+	  ReactDragListView.prototype.stopAutoScroll = function stopAutoScroll() {
 	    clearInterval(this.scrollTimerId);
 	    this.scrollTimerId = -1;
 	    this.fixDragLine(this.cacheDragTarget);
@@ -23047,15 +23047,15 @@
 	    if (this.direction === DIRECTIONS.BOTTOM) {
 	      this.scrollElement.scrollTop = scrollTop + this.props.scrollSpeed;
 	      if (scrollTop === this.scrollElement.scrollTop) {
-	        this.stopAtuoScroll();
+	        this.stopAutoScroll();
 	      }
 	    } else if (this.direction === DIRECTIONS.TOP) {
 	      this.scrollElement.scrollTop = scrollTop - this.props.scrollSpeed;
 	      if (this.scrollElement.scrollTop <= 0) {
-	        this.stopAtuoScroll();
+	        this.stopAutoScroll();
 	      }
 	    } else {
-	      this.stopAtuoScroll();
+	      this.stopAutoScroll();
 	    }
 	  };
 	
@@ -23518,7 +23518,7 @@
 	        this.scrollTimerId = setInterval(this.autoScroll, 20);
 	      }
 	    } else {
-	      this.stopAtuoScroll();
+	      this.stopAutoScroll();
 	    }
 	  };
 	
@@ -23527,15 +23527,15 @@
 	    if (this.direction === DIRECTIONS.RIGHT) {
 	      this.scrollElement.scrollLeft = scrollLeft + this.props.scrollSpeed;
 	      if (scrollLeft === this.scrollElement.scrollLeft) {
-	        this.stopAtuoScroll();
+	        this.stopAutoScroll();
 	      }
 	    } else if (this.direction === DIRECTIONS.LEFT) {
 	      this.scrollElement.scrollLeft = scrollLeft - this.props.scrollSpeed;
 	      if (this.scrollElement.scrollLeft <= 0) {
-	        this.stopAtuoScroll();
+	        this.stopAutoScroll();
 	      }
 	    } else {
-	      this.stopAtuoScroll();
+	      this.stopAutoScroll();
 	    }
 	  };
 	
