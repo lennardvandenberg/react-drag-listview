@@ -37,7 +37,7 @@ class ReactDragColumnView extends ReactDragListView {
         this.scrollTimerId = setInterval(this.autoScroll, 20);
       }
     } else {
-      this.stopAtuoScroll();
+      this.stopAutoScroll();
     }
   }
 
@@ -46,15 +46,15 @@ class ReactDragColumnView extends ReactDragListView {
     if (this.direction === DIRECTIONS.RIGHT) {
       this.scrollElement.scrollLeft = scrollLeft + this.props.scrollSpeed;
       if (scrollLeft === this.scrollElement.scrollLeft) {
-        this.stopAtuoScroll();
+        this.stopAutoScroll();
       }
     } else if (this.direction === DIRECTIONS.LEFT) {
       this.scrollElement.scrollLeft = scrollLeft - this.props.scrollSpeed;
       if (this.scrollElement.scrollLeft <= 0) {
-        this.stopAtuoScroll();
+        this.stopAutoScroll();
       }
     } else {
-      this.stopAtuoScroll();
+      this.stopAutoScroll();
     }
   }
 

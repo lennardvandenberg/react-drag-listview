@@ -100,7 +100,7 @@ class ReactDragListView extends React.Component {
       }
     } else {
       toIndex = -1;
-      this.stopAtuoScroll();
+      this.stopAutoScroll();
     }
     this.cacheDragTarget = target;
     this.setState({ toIndex });
@@ -109,7 +109,7 @@ class ReactDragListView extends React.Component {
 
   onDragEnd(e) {
     const target = this.getDragNode(e.target);
-    this.stopAtuoScroll();
+    this.stopAutoScroll();
     if (target) {
       target.removeAttribute('draggable');
       target.ondragstart = target.ondragend
@@ -169,11 +169,11 @@ class ReactDragListView extends React.Component {
         this.scrollTimerId = setInterval(this.autoScroll, 20);
       }
     } else {
-      this.stopAtuoScroll();
+      this.stopAutoScroll();
     }
   }
 
-  stopAtuoScroll() {
+  stopAutoScroll() {
     clearInterval(this.scrollTimerId);
     this.scrollTimerId = -1;
     this.fixDragLine(this.cacheDragTarget);
@@ -184,15 +184,15 @@ class ReactDragListView extends React.Component {
     if (this.direction === DIRECTIONS.BOTTOM) {
       this.scrollElement.scrollTop = scrollTop + this.props.scrollSpeed;
       if (scrollTop === this.scrollElement.scrollTop) {
-        this.stopAtuoScroll();
+        this.stopAutoScroll();
       }
     } else if (this.direction === DIRECTIONS.TOP) {
       this.scrollElement.scrollTop = scrollTop - this.props.scrollSpeed;
       if (this.scrollElement.scrollTop <= 0) {
-        this.stopAtuoScroll();
+        this.stopAutoScroll();
       }
     } else {
-      this.stopAtuoScroll();
+      this.stopAutoScroll();
     }
   }
 
